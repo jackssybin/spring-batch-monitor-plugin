@@ -43,7 +43,7 @@
 
     <h3>📋 Requirements:</h3>
     <ul>
-        <li>IntelliJ IDEA 2022.* or later (Community/Ultimate Edition)</li>
+        <li>IntelliJ IDEA 2022.1 or later (Community/Ultimate Edition) - Supports up to 2025.1.2</li>
         <li>Access to Spring Batch metadata tables (BATCH_JOB_EXECUTION, BATCH_STEP_EXECUTION, etc.)</li>
         <li>Java 11 or later</li>
     </ul>
@@ -73,7 +73,7 @@
 
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
-    <idea-version since-build="223" until-build="243.*"/>
+    <idea-version since-build="221" until-build="251.*"/>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.java</depends>

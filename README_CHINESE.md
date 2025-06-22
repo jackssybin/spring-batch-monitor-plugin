@@ -49,7 +49,7 @@
 
 ## 📋 系统要求
 
-- **IntelliJ IDEA**: 2022.* 或更高版本（社区版/旗舰版）
+- **IntelliJ IDEA**: 2022.1 或更高版本（社区版/旗舰版）- 支持到 2025.1.2
 - **Java**: 11 或更高版本
 - **数据库访问**: 连接到Spring Batch元数据表
 - **必需表**: `BATCH_JOB_EXECUTION`、`BATCH_STEP_EXECUTION`、`BATCH_JOB_INSTANCE`

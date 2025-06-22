@@ -49,7 +49,7 @@ English | [中文](README_CHINESE.md)
 
 ## 📋 Requirements
 
-- **IntelliJ IDEA**: 2022.* or later (Community/Ultimate Edition)
+- **IntelliJ IDEA**: 2022.1 or later (Community/Ultimate Edition) - Supports up to 2025.1.2
 - **Java**: 11 or later
 - **Database Access**: Connection to Spring Batch metadata tables
 - **Required Tables**: `BATCH_JOB_EXECUTION`, `BATCH_STEP_EXECUTION`, `BATCH_JOB_INSTANCE`
