@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="batchGradientDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#66BB6A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4CAF50;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="arrowGradientDark" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFD54F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFC107;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景圆形 -->
+  <circle cx="20" cy="20" r="18" fill="url(#batchGradientDark)" stroke="#2E7D32" stroke-width="1"/>
+  
+  <!-- 批处理流程图标 -->
+  <!-- 第一个处理块 -->
+  <rect x="6" y="12" width="8" height="6" rx="1" fill="#263238" opacity="0.9"/>
+  <rect x="7" y="13" width="6" height="1" fill="#66BB6A"/>
+  <rect x="7" y="15" width="4" height="1" fill="#66BB6A"/>
+  
+  <!-- 箭头1 -->
+  <path d="M 15 15 L 18 15 L 17 13.5 M 18 15 L 17 16.5" stroke="url(#arrowGradientDark)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  
+  <!-- 第二个处理块 -->
+  <rect x="19" y="12" width="8" height="6" rx="1" fill="#263238" opacity="0.9"/>
+  <rect x="20" y="13" width="6" height="1" fill="#66BB6A"/>
+  <rect x="20" y="15" width="4" height="1" fill="#66BB6A"/>
+  
+  <!-- 箭头2 -->
+  <path d="M 28 15 L 31 15 L 30 13.5 M 31 15 L 30 16.5" stroke="url(#arrowGradientDark)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  
+  <!-- 第三个处理块 -->
+  <rect x="32" y="12" width="6" height="6" rx="1" fill="#263238" opacity="0.9"/>
+  <circle cx="35" cy="15" r="1.5" fill="#66BB6A"/>
+  
+  <!-- 监控图标 -->
+  <circle cx="20" cy="26" r="6" fill="#263238" opacity="0.2" stroke="#263238" stroke-width="1"/>
+  <circle cx="20" cy="26" r="3" fill="none" stroke="#263238" stroke-width="1.5"/>
+  <circle cx="20" cy="26" r="1" fill="#263238"/>
+  
+  <!-- 数据流线条 -->
+  <path d="M 8 22 Q 20 24 32 22" stroke="#263238" stroke-width="1" fill="none" opacity="0.6"/>
+  <path d="M 10 24 Q 20 26 30 24" stroke="#263238" stroke-width="1" fill="none" opacity="0.4"/>
+</svg>

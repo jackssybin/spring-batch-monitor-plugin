@@ -1,0 +1,102 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.springbatch.monitor.spring-batch-monitor-plugin</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>Spring Batch Monitor</name>
+
+    <!-- Plugin version -->
+    <version>1.0.0</version>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="support@example.com" url="https://github.com/jackssybin/spring-batch-monitor-plugin">Spring Batch Monitor</vendor>
+
+    <!-- Plugin license -->
+    <license>MIT</license>
+    <license-url>https://opensource.org/licenses/MIT</license-url>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> bracket. -->
+    <description><![CDATA[
+    <p>Spring Batch Monitor Plugin for IntelliJ IDEA provides a convenient way to monitor and manage Spring Batch jobs directly from your IDE.</p>
+
+    <p>This plugin connects directly to your Spring Batch database and provides comprehensive monitoring capabilities without requiring additional backend services.</p>
+
+    <h3>✨ Key Features:</h3>
+    <ul>
+        <li><strong>Multi-Database Support</strong> - MySQL, PostgreSQL, Oracle, SQL Server, H2</li>
+        <li><strong>Job Execution Monitoring</strong> - View complete job execution history with detailed information</li>
+        <li><strong>Step-Level Analysis</strong> - Analyze individual step executions with comprehensive statistics</li>
+        <li><strong>Advanced Search & Filtering</strong> - Search by job name, status, time range, and keywords</li>
+        <li><strong>Real-time Configuration</strong> - Dynamic data source management with instant updates</li>
+        <li><strong>Chinese Interface</strong> - Fully localized Chinese user interface</li>
+        <li><strong>Statistical Reports</strong> - Job success rates, execution trends, and performance metrics</li>
+    </ul>
+
+    <h3>🚀 Quick Start:</h3>
+    <ol>
+        <li>Install the plugin and restart IntelliJ IDEA</li>
+        <li>Open the Spring Batch Monitor tool window</li>
+        <li>Configure your Spring Batch database connection</li>
+        <li>Start monitoring your batch jobs!</li>
+    </ol>
+
+    <h3>📋 Requirements:</h3>
+    <ul>
+        <li>IntelliJ IDEA 2022.* or later (Community/Ultimate Edition)</li>
+        <li>Access to Spring Batch metadata tables (BATCH_JOB_EXECUTION, BATCH_STEP_EXECUTION, etc.)</li>
+        <li>Java 11 or later</li>
+    </ul>
+
+    <p><strong>No additional backend services required!</strong> The plugin connects directly to your database.</p>
+    ]]></description>
+
+    <!-- Change notes for this version -->
+    <change-notes><![CDATA[
+    <h3>Version 1.0.0</h3>
+    <ul>
+        <li><strong>Initial Release</strong> - Complete Spring Batch monitoring solution</li>
+        <li><strong>Multi-Database Support</strong> - MySQL, PostgreSQL, Oracle, SQL Server, H2</li>
+        <li><strong>Job & Step Monitoring</strong> - Comprehensive execution history and statistics</li>
+        <li><strong>Advanced Search</strong> - Filter by job name, status, time range, and keywords</li>
+        <li><strong>Real-time Updates</strong> - Dynamic data source configuration management</li>
+        <li><strong>Chinese Interface</strong> - Fully localized user interface</li>
+        <li><strong>Direct Database Connection</strong> - No additional backend services required</li>
+    </ul>
+    ]]></change-notes>
+
+    <!-- Plugin category -->
+    <category>Tools Integration</category>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <idea-version since-build="223" until-build="999.*"/>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Tool Window -->
+        <toolWindow id="Spring Batch Monitor"
+                    secondary="true"
+                    anchor="right"
+                    icon="/icons/toolWindow.svg"
+                    factoryClass="com.springbatch.monitor.ui.SpringBatchMonitorToolWindowFactory"/>
+    </extensions>
+
+    <!-- Actions -->
+    <actions>
+        <!-- Add your actions here -->
+        <group id="SpringBatchMonitor.MainMenu" text="Spring Batch Monitor" description="Spring Batch Monitor actions">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+            <action id="SpringBatchMonitor.OpenMonitor" 
+                    class="com.springbatch.monitor.actions.OpenMonitorAction" 
+                    text="Open Spring Batch Monitor" 
+                    description="Open Spring Batch Monitor Tool Window"/>
+        </group>
+    </actions>
+</idea-plugin>
