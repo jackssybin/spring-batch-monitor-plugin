@@ -107,8 +107,10 @@ A comprehensive Spring Batch monitoring plugin for IntelliJ IDEA that provides r
 ```bash
 git clone https://github.com/jackssybin/spring-batch-monitor-plugin.git
 cd spring-batch-monitor-plugin
-./gradlew build
+gradle clean buildPlugin
 ```
+
+The built plugin will be available at `build/distributions/spring-batch-monitor-plugin-1.0.0.zip`
 
 ### Project Structure
 ```

@@ -13,9 +13,7 @@
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
     <vendor email="support@example.com" url="https://github.com/jackssybin/spring-batch-monitor-plugin">Spring Batch Monitor</vendor>
 
-    <!-- Plugin license -->
-    <license>MIT</license>
-    <license-url>https://opensource.org/licenses/MIT</license-url>
+    <!-- Plugin license information is included in description -->
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> bracket. -->
@@ -51,6 +49,9 @@
     </ul>
 
     <p><strong>No additional backend services required!</strong> The plugin connects directly to your database.</p>
+
+    <h3>📄 License</h3>
+    <p>This plugin is released under the <strong>MIT License</strong> - free for commercial and personal use.</p>
     ]]></description>
 
     <!-- Change notes for this version -->
@@ -72,7 +73,7 @@
 
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
-    <idea-version since-build="223" until-build="999.*"/>
+    <idea-version since-build="223" until-build="243.*"/>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.java</depends>
