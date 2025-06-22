@@ -6,6 +6,8 @@
 
 A comprehensive Spring Batch monitoring plugin for IntelliJ IDEA that provides real-time job execution monitoring and management capabilities directly within your IDE.
 
+English | [中文](README_CHINESE.md)
+
 ## ✨ Features
 
 ### 🎯 Core Functionality
