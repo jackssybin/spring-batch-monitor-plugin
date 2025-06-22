@@ -54,7 +54,7 @@ tasks.withType(JavaCompile) {
 
 tasks.patchPluginXml {
     sinceBuild = "223"
-    untilBuild = "999.*"
+    untilBuild = "243.*"
 }
 
 tasks.signPlugin {
