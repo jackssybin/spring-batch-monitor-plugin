@@ -65,3 +65,6 @@ hs_err_pid*
 /build/
 /out/
 /.gradle/
+
+# Keep the Gradle wrapper executable in fresh clones and CI.
+!gradle/wrapper/gradle-wrapper.jar

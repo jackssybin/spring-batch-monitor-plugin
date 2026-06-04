@@ -53,7 +53,7 @@ tasks.withType(JavaCompile) {
 }
 
 tasks.patchPluginXml {
-    sinceBuild = "221"
+    sinceBuild = "223"
     untilBuild = "251.*"
 }
 
@@ -67,4 +67,10 @@ tasks.publishPlugin {
     token = System.getenv("PUBLISH_TOKEN")
     // Plugin channels: default, eap, alpha, beta
     channels = ['default']
+}
+
+// Searchable options indexing is noisy in headless CI for this plugin and is not
+// required for validating the build artifact.
+tasks.buildSearchableOptions {
+    enabled = false
 }

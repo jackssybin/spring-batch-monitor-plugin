@@ -1,317 +1,156 @@
 # Spring Batch Monitor Plugin
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![IntelliJ IDEA](https://img.shields.io/badge/IntelliJ%20IDEA-2022.*+-blue.svg)](https://www.jetbrains.com/idea/)
-[![Java](https://img.shields.io/badge/Java-11+-orange.svg)](https://openjdk.java.net/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![IntelliJ IDEA](https://img.shields.io/badge/IntelliJ%20IDEA-2022.3%2B-blue.svg)](https://www.jetbrains.com/idea/)
+[![Java](https://img.shields.io/badge/Java-17%2B-orange.svg)](https://openjdk.org/)
 
-一个为IntelliJ IDEA设计的全面Spring Batch监控插件，提供直接在IDE中进行实时作业执行监控和管理的功能。
+Spring Batch Monitor Plugin 是一个开源 IntelliJ IDEA 插件，用于直接从 Spring Batch 元数据数据库中查看 job 和 step 的执行情况。它可以帮助开发者在 IDE 内理解批处理状态、失败原因、吞吐指标和历史执行记录，不需要额外部署监控后端。
 
 [English](README.md) | 中文
 
-## ✨ 功能特性
+## 项目价值
 
-### 🎯 核心功能
-- **直接数据库连接** - 无需额外的后端服务
-- **多数据库支持** - MySQL、PostgreSQL、Oracle、SQL Server、H2、SQLite
-- **实时监控** - 实时作业和步骤执行跟踪
-- **中文界面** - 完全本地化的中文用户界面
+Spring Batch 会在元数据表中保存丰富的执行状态，但开发者通常需要离开 IDE，手写 SQL，或临时搭建监控页面才能回答一些常见问题：
 
-### 📊 监控能力
-- **作业执行历史** - 完整的执行记录和详细信息
-- **步骤级分析** - 单个步骤执行统计和性能指标
-- **高级搜索和过滤** - 按作业名称、状态、时间范围和执行ID搜索
-- **统计报告** - 成功率、执行趋势和性能分析
+- 最近哪些 job 失败了？
+- 哪个 step 执行慢，或者反复失败？
+- 读取、写入、过滤、跳过的数据量是多少？
+- 不同批处理环境之间的执行表现是否一致？
 
-### 🔧 管理功能
-- **动态数据源配置** - 添加、编辑和测试数据库连接
-- **实时配置更新** - 所有面板的即时更新
-- **连接测试** - 内置数据库连接验证
-- **多环境支持** - 管理多个Spring Batch环境
+这个插件把这些信息放回 IDE 内，方便在开发、调试和支持场景中快速检查批处理执行状态。
 
-## 🚀 快速开始
+## 功能特性
 
-### 安装
-1. 从JetBrains Marketplace下载插件
-2. 通过IntelliJ IDEA安装：`设置` → `插件` → `市场` → 搜索"Spring Batch Monitor"
-3. 重启IntelliJ IDEA
+- 直接连接数据库，不需要额外后端服务。
+- 查看 job 执行历史、状态、时间和详细信息。
+- 查看 step 级别的读写、跳过和性能指标。
+- 按 job 名称、状态、执行 ID 和时间范围搜索过滤。
+- 支持多环境数据源配置。
+- 保存数据源前可以测试连接。
+- 提供成功率、执行趋势和性能信号等统计视图。
+- 中文界面和中英文双语文档。
 
-### 配置
-1. 打开Spring Batch Monitor工具窗口（视图 → 工具窗口 → Spring Batch Monitor）
-2. 导航到"数据源配置"标签页
-3. 点击"添加数据源"配置您的数据库连接
-4. 测试连接并保存
-
-### 使用
-1. **作业监控**：切换到"作业列表"标签页查看作业执行
-2. **步骤分析**：使用"步骤列表"标签页进行详细的步骤执行分析
-3. **统计信息**：查看"统计分析"标签页获取综合报告
-4. **搜索和过滤**：使用搜索字段查找特定的作业或步骤
-
-## 📋 系统要求
-
-- **IntelliJ IDEA**: 2022.1 或更高版本（社区版/旗舰版）- 支持到 2025.1.2
-- **Java**: 11 或更高版本
-- **数据库访问**: 连接到Spring Batch元数据表
-- **必需表**: `BATCH_JOB_EXECUTION`、`BATCH_STEP_EXECUTION`、`BATCH_JOB_INSTANCE`
-
-## 🗄️ 支持的数据库
+## 支持的数据库
 
 | 数据库 | 驱动 | 默认端口 |
-|--------|------|----------|
+| --- | --- | --- |
 | MySQL | `com.mysql.cj.jdbc.Driver` | 3306 |
 | PostgreSQL | `org.postgresql.Driver` | 5432 |
 | Oracle | `oracle.jdbc.OracleDriver` | 1521 |
 | SQL Server | `com.microsoft.sqlserver.jdbc.SQLServerDriver` | 1433 |
-| H2 | `org.h2.Driver` | - |
-| SQLite | `org.sqlite.JDBC` | - |
+| H2 | `org.h2.Driver` | 不适用 |
+| SQLite | `org.sqlite.JDBC` | 不适用 |
 
-## 🎨 用户界面
+插件需要访问标准 Spring Batch 元数据表，包括 `BATCH_JOB_INSTANCE`、`BATCH_JOB_EXECUTION` 和 `BATCH_STEP_EXECUTION`。
 
-### 主要面板
-- **欢迎页面** - 插件概览和快速访问
-- **数据源配置** - 数据库连接管理
-- **作业列表** - 带高级过滤的作业执行监控
-- **步骤列表** - 步骤执行分析和统计
-- **作业详情** - 详细的作业执行信息
-- **统计分析** - 综合报告和分析
+## 典型使用场景
 
-### 主要特性
-- **主题支持** - 完全兼容IntelliJ IDEA的亮色和暗色主题
-- **实时验证** - 带视觉反馈的即时输入验证
-- **响应式设计** - 针对不同屏幕尺寸优化的布局
-- **直观导航** - 不同监控视图之间的轻松切换
+- 在 IntelliJ IDEA 内调试 Spring Batch 失败任务。
+- 对比开发、测试和类生产环境中的 job 执行表现。
+- 在性能调优时查看 step 级别吞吐和跳过数据量。
+- 为运维和支持场景提供轻量级 IDE 内元数据视图。
+- 修改 job 或 step 代码时同步查看历史执行状态。
 
-## 🔍 高级搜索
+## 快速开始
 
-### 作业列表过滤
-- **作业名称**：按精确或部分作业名称过滤
-- **状态**：按执行状态过滤（COMPLETED、FAILED、STARTED等）
-- **时间范围**：按开始/结束时间过滤，支持灵活的日期格式
-- **日期格式**：支持`2020-06-20`和`2020-06-20 14:30:00`格式
+### 安装
 
-### 步骤列表过滤
-- **步骤名称**：按步骤名称过滤
-- **作业执行ID**：按父作业执行过滤
-- **状态**：按步骤执行状态过滤
-- **时间范围**：灵活的日期/时间过滤
+1. 从源码构建插件，或使用已发布的插件包。
+2. 在 IntelliJ IDEA 中打开 `Settings` -> `Plugins` -> `Install Plugin from Disk`。
+3. 选择生成的插件 ZIP 文件。
+4. 重启 IntelliJ IDEA。
 
-## 📈 统计和分析
+### 配置
 
-### 可用指标
-- **作业执行统计**：总计、成功、失败和运行中的作业
-- **步骤执行统计**：步骤级成功率和性能
-- **数据处理指标**：读取/写入计数、跳过计数和处理统计
-- **趋势分析**：历史执行模式和性能趋势
+1. 打开 `View` -> `Tool Windows` -> `Spring Batch Monitor`。
+2. 进入数据源配置面板。
+3. 添加 Spring Batch 元数据数据库连接。
+4. 测试连接并保存。
+5. 查看 job、step、详情或统计视图。
 
-## 🛠️ 开发
+## 安全模型
 
-### 从源码构建
-```bash
+插件从 IDE 直接连接你配置的数据库。它不需要托管后端，也不会有意把元数据发送给第三方服务。
+
+推荐用法：
+
+- 尽量使用只读数据库用户。
+- 将权限限制在 Spring Batch 元数据表范围内。
+- 远程数据库连接优先使用 SSL/TLS。
+- 不要提交数据库账号、密码或连接串。
+- 如果本地开发机器存在泄露风险，请及时轮换凭据。
+
+安全问题请按照 [SECURITY.md](SECURITY.md) 中的流程报告。
+
+## 本地开发
+
+环境要求：
+
+- JDK 17 或更高版本。
+- IntelliJ IDEA 2022.3 或更高版本。
+- Windows 下可使用 `gradlew.bat`。
+
+从源码构建：
+
+```powershell
 git clone https://github.com/jackssybin/spring-batch-monitor-plugin.git
 cd spring-batch-monitor-plugin
-gradle clean buildPlugin
+.\gradlew.bat clean buildPlugin
 ```
 
-构建的插件将在`build/distributions/spring-batch-monitor-plugin-1.0.0.zip`
+插件 ZIP 会生成在 `build/distributions/` 目录下。
 
-### 项目结构
+运行检查：
+
+```powershell
+.\gradlew.bat clean check buildPlugin
 ```
+
+## 项目结构
+
+```text
 spring-batch-monitor-plugin/
 ├── src/main/java/com/springbatch/monitor/
-│   ├── model/          # 数据模型和配置
-│   ├── services/       # 业务逻辑和数据库服务
-│   └── ui/             # 用户界面组件
+│   ├── actions/
+│   ├── model/
+│   ├── models/
+│   ├── services/
+│   ├── ui/
+│   └── utils/
 ├── src/main/resources/
-│   ├── META-INF/       # 插件配置
-│   └── icons/          # UI图标和资源
-└── build.gradle        # 构建配置
+│   ├── META-INF/plugin.xml
+│   └── icons/
+├── build.gradle
+└── settings.gradle
 ```
 
-## 📝 许可证
+## Roadmap
 
-本项目采用MIT许可证 - 详见[LICENSE](LICENSE)文件。
+- 补充日期解析和数据库查询行为的自动化测试。
+- 增加 Spring Batch 元数据示例，用于本地兼容性测试。
+- 扩展多数据库兼容性验证。
+- 持续完善中英文文档。
+- 补充常见连接和 schema 问题排查指南。
+- 准备可重复的签名发布和 JetBrains Marketplace 发布流程。
 
-## 🤝 贡献
+## Codex for OSS 准备情况
 
-欢迎贡献！请随时提交Pull Request。
+这个项目作为独立开源开发者工具维护。Codex 支持将用于改进：
 
-## 📞 支持
+- IntelliJ 插件代码和数据库访问代码的自动化审查。
+- 查询、过滤、日期解析和 UI 工作流逻辑的测试生成。
+- 多数据库兼容性场景验证。
+- 凭据处理和数据库连接行为的安全审查。
+- 中英文文档、issue 分析和发布 QA。
 
-- **问题反馈**: [GitHub Issues](https://github.com/jackssybin/spring-batch-monitor-plugin/issues)
-- **文档**: [插件文档](https://github.com/jackssybin/spring-batch-monitor-plugin/wiki)
+目标是让这个 Spring Batch 开发者工具更可靠、更安全、更容易维护，也更容易被社区采用。
 
-## 🏷️ 版本历史
+申请说明和可复制的表单草稿见 [docs/CODEX_FOR_OSS.md](docs/CODEX_FOR_OSS.md)。
 
-### v1.0.0 (首次发布)
-- 完整的Spring Batch监控解决方案
-- 多数据库支持和连接测试
-- 高级搜索和过滤功能
-- 实时作业和步骤执行监控
-- 综合统计报告
-- 完全本地化的中文界面
-- 直接数据库连接（无需后端）
+## 参与贡献
 
-## 🌟 特色功能
+欢迎贡献代码、文档和问题反馈。开发流程和 PR 要求见 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
-### 智能日期时间解析
-- **灵活格式支持**：支持多种日期时间格式
-- **智能补全**：日期自动补全为完整时间范围
-- **实时验证**：输入时即时验证和视觉反馈
+## License
 
-### 主题适配
-- **完美兼容**：支持IntelliJ IDEA的所有主题
-- **动态调整**：根据主题自动调整颜色和样式
-- **用户友好**：在任何主题下都有良好的视觉体验
-
-### 多数据源管理
-- **集中配置**：统一管理多个数据源
-- **实时切换**：无需重启即可切换数据源
-- **连接池**：高效的数据库连接管理
-
-## 📖 详细使用指南
-
-### 数据源配置
-
-#### 添加新数据源
-1. 打开"数据源配置"标签页
-2. 点击"添加数据源"按钮
-3. 填写连接信息：
-   - **名称**：为数据源起一个易识别的名称
-   - **数据库类型**：从下拉列表中选择数据库类型
-   - **连接URL**：输入数据库连接地址
-   - **用户名**：数据库用户名
-   - **密码**：数据库密码
-   - **驱动类名**：会根据数据库类型自动填充
-4. 点击"测试连接"验证配置
-5. 点击"确定"保存配置
-
-#### 常用数据库连接示例
-
-**MySQL**
-```
-URL: jdbc:mysql://localhost:3306/batch_db
-驱动: com.mysql.cj.jdbc.Driver
-```
-
-**PostgreSQL**
-```
-URL: jdbc:postgresql://localhost:5432/batch_db
-驱动: org.postgresql.Driver
-```
-
-**H2 (内存数据库)**
-```
-URL: jdbc:h2:mem:batch_db;DB_CLOSE_DELAY=-1
-驱动: org.h2.Driver
-```
-
-### 作业监控
-
-#### 查看作业列表
-- **实时刷新**：作业列表会自动更新显示最新的执行状态
-- **状态颜色**：
-  - 🟢 **绿色**：COMPLETED（已完成）
-  - 🔴 **红色**：FAILED（失败）
-  - 🔵 **蓝色**：STARTED/STARTING（运行中）
-  - ⚫ **黑色**：其他状态
-
-#### 搜索和过滤
-- **作业名称搜索**：支持模糊匹配
-- **状态过滤**：选择特定的执行状态
-- **时间范围过滤**：
-  - 支持多种日期格式：`2020-06-20`、`2020-06-20 14:30:00`
-  - 智能时间补全：仅输入日期会自动补全时间范围
-  - 实时验证：输入时显示格式是否正确
-
-#### 查看作业详情
-- 双击作业记录查看详细信息
-- 包含完整的执行参数、开始时间、结束时间等
-- 可以查看相关的步骤执行信息
-
-### 步骤监控
-
-#### 步骤执行分析
-- **性能指标**：读取数量、写入数量、跳过数量等
-- **执行时间**：步骤开始和结束时间
-- **状态跟踪**：步骤执行状态和结果
-
-#### 步骤搜索
-- 按步骤名称搜索
-- 按所属作业执行ID过滤
-- 按执行状态过滤
-- 时间范围过滤
-
-### 统计分析
-
-#### 可视化报告
-- **作业统计**：成功率、失败率、执行趋势
-- **步骤统计**：步骤级别的性能分析
-- **数据处理统计**：数据读写效率分析
-- **历史趋势**：执行模式和性能变化
-
-## 🔧 高级配置
-
-### 连接池设置
-插件使用HikariCP连接池，默认配置：
-- **最大连接数**：5
-- **最小空闲连接**：1
-- **连接超时**：30秒
-- **空闲超时**：10分钟
-- **最大生命周期**：30分钟
-
-### 性能优化建议
-1. **数据库索引**：确保Spring Batch表有适当的索引
-2. **查询限制**：大数据量时使用时间范围过滤
-3. **连接管理**：及时关闭不使用的数据源连接
-4. **内存使用**：定期清理查询结果缓存
-
-## 🐛 故障排除
-
-### 常见问题
-
-#### 连接失败
-**问题**：无法连接到数据库
-**解决方案**：
-1. 检查数据库服务是否运行
-2. 验证连接URL、用户名和密码
-3. 确认网络连接和防火墙设置
-4. 检查数据库驱动是否正确
-
-#### 数据不显示
-**问题**：连接成功但看不到数据
-**解决方案**：
-1. 确认Spring Batch表存在
-2. 检查用户权限是否足够
-3. 验证表名是否正确（区分大小写）
-4. 确认数据库中有Spring Batch执行记录
-
-#### 性能问题
-**问题**：查询速度慢
-**解决方案**：
-1. 使用时间范围过滤减少数据量
-2. 为Spring Batch表添加索引
-3. 检查数据库性能和资源使用
-4. 考虑数据归档策略
-
-### 日志和调试
-- 插件错误信息会显示在IntelliJ IDEA的事件日志中
-- 数据库连接错误会在连接测试时显示详细信息
-- 查询异常会在状态栏显示简要提示
-
-## 🔒 安全考虑
-
-### 数据库连接安全
-- **密码存储**：密码使用IntelliJ IDEA的安全存储机制
-- **连接加密**：支持SSL/TLS加密连接
-- **权限控制**：建议使用只读权限的数据库用户
-- **网络安全**：在生产环境中使用VPN或专用网络
-
-### 最佳实践
-1. **最小权限原则**：只授予必要的数据库权限
-2. **定期更新**：保持插件和数据库驱动最新
-3. **监控访问**：记录和监控数据库访问日志
-4. **备份策略**：定期备份Spring Batch元数据
-
----
-
-**用 ❤️ 为Spring Batch社区制作**
+本项目基于 [MIT License](LICENSE) 发布。
